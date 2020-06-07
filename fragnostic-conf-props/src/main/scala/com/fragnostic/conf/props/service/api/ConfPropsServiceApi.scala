@@ -13,7 +13,9 @@ trait ConfPropsServiceApi {
 
   trait ConfPropsServiceApi {
 
-    def getString(locale: Option[Locale] = None, props: ResourceI18n, key: String): Either[String, Option[String]]
+    def getString(locale: Locale, props: ResourceI18n, key: String): Either[String, Option[String]]
+
+    def getString(props: ResourceI18n, key: String): Either[String, Option[String]]
 
     def getShort(props: ResourceI18n, key: String): Either[String, Option[Short]]
 

@@ -19,7 +19,7 @@ class ConfPropsServiceGetStringTest extends BaseConfTest with KeySupport {
 
     it("Can Get Value As String es/CL") {
 
-      val opt = CakeConfPropsService.confPropsServiceApi.getString(locale = Some(localeEsCl), props = this, key = keyPropsString) fold (
+      val opt = CakeConfPropsService.confPropsServiceApi.getString(localeEsCl, props = this, key = keyPropsString) fold (
         error => throw new IllegalStateException(error),
         opt => opt)
 
@@ -29,7 +29,7 @@ class ConfPropsServiceGetStringTest extends BaseConfTest with KeySupport {
 
     it("Can Get Value As String pt/BR") {
 
-      val opt = CakeConfPropsService.confPropsServiceApi.getString(locale = Some(localePtBr), props = this, key = keyPropsString) fold (
+      val opt = CakeConfPropsService.confPropsServiceApi.getString(localePtBr, props = this, key = keyPropsString) fold (
         error => throw new IllegalStateException(error),
         opt => opt)
 
@@ -39,7 +39,7 @@ class ConfPropsServiceGetStringTest extends BaseConfTest with KeySupport {
 
     it("Can Get Value As String en/US") {
 
-      val opt = CakeConfPropsService.confPropsServiceApi.getString(locale = Some(localeEnUs), props = this, key = keyPropsString) fold (
+      val opt = CakeConfPropsService.confPropsServiceApi.getString(localeEnUs, props = this, key = keyPropsString) fold (
         error => throw new IllegalStateException(error),
         opt => opt)
 
