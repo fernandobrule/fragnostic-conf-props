@@ -1,8 +1,7 @@
 #!/bin/bash
 
-export CONF_PROPS=/Users/fernandobrule/Clones/fragnostic/fragnostic-code/fragnostic-conf/fragnostic-conf-props/fragnostic-conf-props/src/test/resources
 
-export LOCALE_DEFAULT_LANG=pt
-export LOCALE_DEFAULT_RGN=BR
+export CONF_PROPS_PATH=/Users/fernandobrule/Clones/fragnostic/fragnostic-code/fragnostic-conf/fragnostic-conf-props/fragnostic-conf-props/src/test/resources/com/fragnostic/conf/props/fragnostic-conf-props.properties
+
 
 ./sbt -v -213

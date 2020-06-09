@@ -4,11 +4,11 @@ import com.fragnostic.conf.props.service.support.BaseConfTest
 
 class ConfPropsServiceGetIntTest extends BaseConfTest {
 
-  describe("Conf Service Get Int Test") {
+  describe("Conf Props Service Get Int Test") {
 
     it("Can Get Value As Int from Props") {
 
-      val opt = CakeConfPropsService.confPropsServiceApi.getInt(props = this, key = keyPropsInt) fold (
+      val opt = CakeConfPropsService.confServiceApi.getInt(keyPropsInt) fold (
         error => throw new IllegalStateException(error),
         opt => opt)
 

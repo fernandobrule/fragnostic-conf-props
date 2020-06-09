@@ -2,14 +2,9 @@ package com.fragnostic.conf.props.service.support
 
 import java.util.Locale
 
-import com.fragnostic.i18n.AbstractSingleMessageI18n
 import org.scalatest.{ FunSpec, Matchers }
 
-trait BaseConfTest extends FunSpec with Matchers with AbstractSingleMessageI18n {
-
-  def baseDir: String = "CONF_PROPS"
-
-  def baseName: String = "com.fragnostic.conf.props.fragnostic-conf-props"
+trait BaseConfTest extends FunSpec with Matchers {
 
   protected val keyPropsString: String = "test.key.props"
   protected val keyPropsShort: String = "test.key.props.short"
