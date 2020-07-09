@@ -1,40 +1,30 @@
 package com.fragnostic.conf.props.service.impl
 
-import java.util.Locale
-
-import com.fragnostic.conf.props.service.api.ConfPropsServiceApi
-import com.fragnostic.conf.service.support.{ KeySupport, TypesSupport }
-import com.fragnostic.i18n.api.ResourceI18n
+import com.fragnostic.conf.base.service.api.ConfServiceApi
+import com.fragnostic.conf.base.service.support.TypesSupport
+import com.fragnostic.conf.props.dao.api.PropsDaoApi
 
 /**
  * Configuration from Properties
  */
-trait ConfPropsServiceImpl extends ConfPropsServiceApi {
+trait ConfPropsServiceImpl extends ConfServiceApi {
+  this: PropsDaoApi =>
 
-  def confPropsServiceApi = new DefaultConfPropsService
+  def confServiceApi = new DefaultConfPropsService
 
-  class DefaultConfPropsService extends ConfPropsServiceApi with TypesSupport with KeySupport {
+  class DefaultConfPropsService extends ConfServiceApi with TypesSupport {
 
-    override def getString(locale: Locale, props: ResourceI18n, key: String): Either[String, Option[String]] =
-      Right(Some(props.getString(locale, key)))
+    override def getString(key: String): Either[String, Option[String]] =
+      Right(Some(propsCrud.getString(key)))
 
-    override def getString(props: ResourceI18n, key: String): Either[String, Option[String]] =
-      Right(Some(props.getString(locale = null, key)))
+    override def getShort(key: String): Either[String, Option[Short]] =
+      toShort(Some(propsCrud.getString(key)))
 
-    override def getShort(props: ResourceI18n, key: String): Either[String, Option[Short]] =
-      getString(props = props, key = key) fold (
-        error => Left(error),
-        opt => toShort(opt))
+    override def getInt(key: String): Either[String, Option[Int]] =
+      toInt(Some(propsCrud.getString(key)))
 
-    override def getInt(props: ResourceI18n, key: String): Either[String, Option[Int]] =
-      getString(props = props, key = key) fold (
-        error => Left(error),
-        opt => toInt(opt))
-
-    override def getLong(props: ResourceI18n, key: String): Either[String, Option[Long]] =
-      getString(props = props, key = key) fold (
-        error => Left(error),
-        opt => toLong(opt))
+    override def getLong(key: String): Either[String, Option[Long]] =
+      toLong(Some(propsCrud.getString(key)))
 
   }
 

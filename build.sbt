@@ -69,13 +69,11 @@ lazy val fragnosticConf = Project(
       logbackClassic,
       slf4jApi,
       scalatest,
-      fragnosticI18n,
-      fragnosticConfSupport
+      fragnosticConfEnv
     ) ++ specs2.map(_ % "test"),
     description := "fragnostic-conf-props"
   )
 ) dependsOn(
-  // some module
 )
 
 lazy val manifestSetting = packageOptions += {
