@@ -4,4 +4,4 @@
 export CONF_PROPS_PATH=/Users/fernandobrule/Clones/fragnostic/fragnostic-code/fragnostic-conf/fragnostic-conf-props/fragnostic-conf-props/src/test/resources/com/fragnostic/conf/props/fragnostic-conf-props.properties
 
 
-./sbt -v -213
+./sbt -v -213 -Dsbt.io.implicit.relative.glob.conversion=allow
