@@ -26,6 +26,9 @@ trait ConfPropsServiceImpl extends ConfServiceApi {
     override def getLong(key: String): Either[String, Option[Long]] =
       toLong(Some(propsCrud.getString(key)))
 
+    override def getBoolean(key: String): Either[String, Option[Boolean]] =
+      toBoolean(Some(propsCrud.getString(key)))
+
   }
 
 }
