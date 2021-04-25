@@ -1,24 +1,28 @@
 package com.fragnostic.conf.props.service
 
-import java.util.Properties
-
+import com.fragnostic.conf.base.service.api.ConfServiceApi
 import com.fragnostic.conf.env.service.CakeConfEnvService
 import com.fragnostic.conf.props.dao.impl.PropsDaoImpl
 import com.fragnostic.conf.props.service.impl.ConfPropsServiceImpl
 import com.fragnostic.support.FilesSupport
 
+import java.util.Properties
+
 object CakeConfPropsService extends FilesSupport {
 
-  private lazy val cakePropertie: Properties =
-    CakeConfEnvService.confServiceApi.getString("CONF_PROPS_PATH") fold (
-      error => throw new IllegalStateException("cake.conf.props.error"),
+  private lazy val cakeProperties: Properties =
+    CakeConfEnvService.confEnvService.getString("FRAGNOSTIC_CONF_PROPS_FILE") fold (
+      error => throw new IllegalStateException(s"cake.conf.props.service.error.$error"),
       opt => opt map (path =>
         loadProperties(path) fold (
-          error => throw new IllegalStateException("cake.conf.props.error"),
-          properties => properties)) getOrElse { throw new IllegalStateException("cake.conf.props.error") })
+          error => throw new IllegalStateException(s"cake.conf.props.service.error.$error"),
+          properties => properties)) getOrElse { throw new IllegalStateException("cake.conf.props.service.error") } //
+    )
 
-  val confServiceApi = new ConfPropsServiceImpl with PropsDaoImpl {
-    override val properties: Properties = cakePropertie
-  }.confServiceApi
+  lazy val confServiceApi = confServicePiece.confServiceApi
+
+  lazy val confServicePiece: ConfServiceApi = new ConfPropsServiceImpl with PropsDaoImpl {
+    override val properties: Properties = cakeProperties
+  }
 
 }
