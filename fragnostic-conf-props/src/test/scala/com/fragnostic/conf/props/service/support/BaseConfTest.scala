@@ -2,9 +2,10 @@ package com.fragnostic.conf.props.service.support
 
 import java.util.Locale
 
-import org.scalatest.{ FunSpec, Matchers }
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
-trait BaseConfTest extends FunSpec with Matchers {
+trait BaseConfTest extends AnyFunSpec with Matchers {
 
   protected val keyPropsString: String = "test.key.props"
   protected val valuePropsString = "yep"
