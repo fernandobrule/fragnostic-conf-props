@@ -16,7 +16,9 @@ object CakeConfPropsService extends FilesSupport {
       opt => opt map (path =>
         loadProperties(path) fold (
           error => throw new IllegalStateException(s"cake.conf.props.service.error.$error"),
-          properties => properties)) getOrElse { throw new IllegalStateException("cake.conf.props.service.error") } //
+          properties => properties //
+        ) //
+      ) getOrElse { throw new IllegalStateException("cake.conf.props.service.error.FRAGNOSTIC_CONF_PROPS_FILE.does.not.exists") } //
     )
 
   lazy val confServiceApi = confServicePiece.confServiceApi
