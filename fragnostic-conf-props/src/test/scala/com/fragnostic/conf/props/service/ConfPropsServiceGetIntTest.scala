@@ -10,10 +10,10 @@ class ConfPropsServiceGetIntTest extends BaseConfTest {
 
       val opt = CakeConfPropsService.confServiceApi.getInt(keyPropsInt) fold (
         error => throw new IllegalStateException(error),
-        opt => opt)
+        opt => opt //
+      )
 
-      opt should not be None
-      opt.get should be(valuePropsInt)
+      assertResult(opt.get)(valuePropsInt)
 
     }
 

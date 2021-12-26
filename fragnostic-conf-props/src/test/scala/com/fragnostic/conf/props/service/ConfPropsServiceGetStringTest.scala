@@ -10,10 +10,10 @@ class ConfPropsServiceGetStringTest extends BaseConfTest {
 
       val opt = CakeConfPropsService.confServiceApi.getString(key = keyPropsString) fold (
         error => throw new IllegalStateException(error),
-        opt => opt)
+        opt => opt //
+      )
 
-      opt should not be None
-      opt.get should be("yep")
+      assertResult(opt.get)("yep")
     }
 
   }
