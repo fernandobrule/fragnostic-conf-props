@@ -15,12 +15,10 @@ object CakeConfPropsService extends FilesSupport {
   private lazy val cakeProperties: Properties =
     CakeConfEnvService.confEnvService.getString(envKey) fold (
       error => throw new IllegalStateException(s"cake.conf.props.service.error.$error"),
-      opt => opt map (
-        path => loadProperties(path) fold (
-          error => throw new IllegalStateException(s"cake.conf.props.service.error.on.load.properties__$error"),
-          properties => properties //
-        ) //
-      ) getOrElse { throw new IllegalStateException(s"cake.conf.props.service.error__${envKey}__does.not.exists") } //
+      path => loadProperties(path) fold (
+        error => throw new IllegalStateException(s"cake.conf.props.service.error.on.load.properties__$error"),
+        properties => properties //
+      ) //
     )
 
   lazy val confServiceApi = confServicePiece.confServiceApi

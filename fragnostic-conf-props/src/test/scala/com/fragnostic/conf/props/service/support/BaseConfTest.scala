@@ -6,6 +6,9 @@ import java.util.Locale
 
 trait BaseConfTest extends AnyFunSpec {
 
+  protected val keyThatDoesNotExists: String = "KEY_THAT_DOES_NOT_EXISTS"
+  protected val valueThatDoesNotExists = "props.dao.error.key__KEY_THAT_DOES_NOT_EXISTS__does.not.exists"
+
   protected val keyPropsString: String = "test.key.props"
   protected val valuePropsString = "yep"
 

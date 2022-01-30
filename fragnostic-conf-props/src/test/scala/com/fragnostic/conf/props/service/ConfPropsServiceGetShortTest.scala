@@ -8,12 +8,23 @@ class ConfPropsServiceGetShortTest extends BaseConfTest {
 
     it("Can Get Value As Short from Props") {
 
-      val opt = CakeConfPropsService.confServiceApi.getShort(keyPropsShort) fold (
+      val value = CakeConfPropsService.confServiceApi.getShort(keyPropsShort) fold (
         error => throw new IllegalStateException(error),
-        opt => opt //
+        value => value //
       )
 
-      assertResult(opt.get)(valuePropsShort)
+      assertResult(valuePropsShort)(value)
+
+    }
+
+    it("Can Not Get Value As Short from Props") {
+
+      val value = CakeConfPropsService.confServiceApi.getShort(keyThatDoesNotExists) fold (
+        error => error,
+        value => value //
+      )
+
+      assertResult(valueThatDoesNotExists)(value)
 
     }
 

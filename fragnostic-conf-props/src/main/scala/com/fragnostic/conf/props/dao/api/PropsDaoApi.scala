@@ -6,7 +6,7 @@ trait PropsDaoApi {
 
   trait PropsCrud {
 
-    def getString(key: String): String
+    def getString(key: String): Either[String, String]
 
   }
 

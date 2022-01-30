@@ -8,13 +8,22 @@ class ConfPropsServiceGetIntTest extends BaseConfTest {
 
     it("Can Get Value As Int from Props") {
 
-      val opt = CakeConfPropsService.confServiceApi.getInt(keyPropsInt) fold (
+      val value = CakeConfPropsService.confServiceApi.getInt(keyPropsInt) fold (
         error => throw new IllegalStateException(error),
-        opt => opt //
+        value => value //
       )
 
-      assertResult(opt.get)(valuePropsInt)
+      assertResult(valuePropsInt)(value)
+    }
 
+    it("Can Not Get Value As Int from Props") {
+
+      val value = CakeConfPropsService.confServiceApi.getInt(keyThatDoesNotExists) fold (
+        error => error,
+        value => value //
+      )
+
+      assertResult(valueThatDoesNotExists)(value)
     }
 
   }

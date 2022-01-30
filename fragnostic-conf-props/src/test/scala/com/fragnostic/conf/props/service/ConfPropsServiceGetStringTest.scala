@@ -8,12 +8,22 @@ class ConfPropsServiceGetStringTest extends BaseConfTest {
 
     it("Can Get Value As String from Props") {
 
-      val opt = CakeConfPropsService.confServiceApi.getString(key = keyPropsString) fold (
+      val value = CakeConfPropsService.confServiceApi.getString(key = keyPropsString) fold (
         error => throw new IllegalStateException(error),
-        opt => opt //
+        value => value //
       )
 
-      assertResult(opt.get)("yep")
+      assertResult("yep")(value)
+    }
+
+    it("Can Not Get Value As String from Props") {
+
+      val value = CakeConfPropsService.confServiceApi.getString(key = keyThatDoesNotExists) fold (
+        error => error,
+        value => value //
+      )
+
+      assertResult(valueThatDoesNotExists)(value)
     }
 
   }
