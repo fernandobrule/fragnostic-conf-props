@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-export FRAGNOSTIC_CONF_PROPS_FILE=./fragnostic-conf-props/src/test/resources/com/fragnostic/conf/props/fragnostic-conf-props.properties
-
+source ./environment
 
 ./sbt -v -213 -Dsbt.io.implicit.relative.glob.conversion=allow

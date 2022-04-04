@@ -8,12 +8,23 @@ class ConfPropsServiceGetLongTest extends BaseConfTest {
 
     it("Can Get Value As Long from Props") {
 
-      val opt = CakeConfPropsService.confServiceApi.getLong(key = keyPropsLong) fold (
+      val value = CakeConfPropsService.confServiceApi.getLong(key = keyPropsLong) fold (
         error => throw new IllegalStateException(error),
-        opt => opt)
+        value => value //
+      )
 
-      opt should not be None
-      opt.get should be(valuePropsLong)
+      assertResult(valuePropsLong)(value)
+
+    }
+
+    it("Can Not Get Value As Long from Props") {
+
+      val value = CakeConfPropsService.confServiceApi.getLong(key = keyThatDoesNotExists) fold (
+        error => error,
+        value => value //
+      )
+
+      assertResult(valueThatDoesNotExists)(value)
 
     }
 

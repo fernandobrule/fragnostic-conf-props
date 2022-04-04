@@ -1,11 +1,13 @@
 package com.fragnostic.conf.props.service.support
 
+import org.scalatest.funspec.AnyFunSpec
+
 import java.util.Locale
 
-import org.scalatest.funspec.AnyFunSpec
-import org.scalatest.matchers.should.Matchers
+trait BaseConfTest extends AnyFunSpec {
 
-trait BaseConfTest extends AnyFunSpec with Matchers {
+  protected val keyThatDoesNotExists: String = "KEY_THAT_DOES_NOT_EXISTS"
+  protected val valueThatDoesNotExists = "props.dao.error.key__KEY_THAT_DOES_NOT_EXISTS__does.not.exists"
 
   protected val keyPropsString: String = "test.key.props"
   protected val valuePropsString = "yep"
