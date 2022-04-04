@@ -10,8 +10,11 @@ trait PropsDaoImpl extends PropsDaoApi with PropertiesAgnostic {
 
   class PropsDaoImpl(val properties: Properties) extends PropsCrud {
 
-    override def getString(key: String): String =
-      properties.getProperty(key)
+    override def getString(key: String): Either[String, String] =
+      Option(properties.getProperty(key)) match {
+        case None => Left(s"props.dao.error.key__${key}__does.not.exists")
+        case Some(value) => Right(value)
+      }
 
   }
 
