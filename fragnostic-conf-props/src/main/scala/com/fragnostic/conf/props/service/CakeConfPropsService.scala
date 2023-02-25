@@ -12,7 +12,7 @@ object CakeConfPropsService extends FilesSupport {
 
   private val envKey: String = "FRAGNOSTIC_CONF_PROPS_FILE"
 
-  private lazy val cakeProperties: Properties =
+  private lazy val cakeProperties: Properties = {
     CakeConfEnvService.confEnvService.getString(envKey) fold (
       error => throw new IllegalStateException(s"cake.conf.props.service.error.$error"),
       path => loadProperties(path) fold (
@@ -20,6 +20,7 @@ object CakeConfPropsService extends FilesSupport {
         properties => properties //
       ) //
     )
+  }
 
   lazy val confServiceApi = confServicePiece.confServiceApi
 
