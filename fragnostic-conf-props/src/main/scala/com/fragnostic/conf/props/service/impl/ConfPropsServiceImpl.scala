@@ -43,11 +43,19 @@ trait ConfPropsServiceImpl extends ConfServiceApi {
         value => Right(value.toInt) //
       )
 
-    override def getLong(key: String): Either[String, Long] =
+    override def getLong(key: String): Either[String, Long] = {
       propsCrud.getString(key) fold (
         error => Left(error),
         value => Right(value.toLong) //
       )
+    }
+
+    override def getBigDecimal(key: String): Either[String, BigDecimal] = {
+      propsCrud.getString(key) fold (
+        error => Left(error),
+        value => Right(BigDecimal(value)) //
+      )
+    }
 
     override def getBoolean(key: String): Either[String, Boolean] =
       propsCrud.getString(key) fold (

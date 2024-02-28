@@ -10,7 +10,7 @@ import java.util.Properties
 
 object CakeConfPropsService extends FilesSupport {
 
-  private val envKey: String = "FRAGNOSTIC_CONF_PROPS_FILE"
+  private val envKey: String = "FRG_CONF_PROPS_FILE"
 
   private lazy val cakeProperties: Properties = {
     CakeConfEnvService.confEnvService.getString(envKey) fold (
